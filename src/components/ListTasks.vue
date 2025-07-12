@@ -18,13 +18,22 @@
         <div class="text-sm bg-black/20 flex items-center w-fit py-0.5 px-3 rounded-full">
           · {{ task.completed ? 'Completada' : 'Pendiente' }}
         </div>
-        <button
-          v-if="!task.completed"
-          @click="completed(task.id)"
-          class="text-black border-2 border-black font-semibold rounded-full py-1 px-3 hover:bg-black/10 hover:text-black transition-colors duration-300"
-        >
-          Completar
-        </button>
+        <div class="flex gap-2">
+          <button
+            v-if="!task.completed"
+            @click="completed(task.id)"
+            class="text-black border-2 border-black font-semibold rounded-full py-1 px-3 hover:bg-black/10 hover:text-black transition-colors duration-300"
+          >
+            Completar
+          </button>
+          <button
+            v-if="!task.completed"
+            @click="editTask(task)"
+            class="text-black border-2 border-black font-semibold rounded-full py-1 px-3 hover:bg-black/10 hover:text-black transition-colors duration-300"
+          >
+            Editar
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -33,15 +42,18 @@
 <script setup lang="ts">
 import type { Task } from '@/services/TaskService'
 
-const emit = defineEmits(['update-tasks'])
-
 const props = defineProps<{ tasks: Task[] }>()
+const emit = defineEmits(['update-tasks', 'edit-task'])
 
 function completed(taskId: string) {
   const updatedTask = props.tasks.map((task) =>
     task.id === taskId ? { ...task, completed: true } : task,
   )
   emit('update-tasks', updatedTask)
+}
+
+function editTask(task: Task) {
+  emit('edit-task', task)
 }
 
 const bgColors = [
