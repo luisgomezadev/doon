@@ -38,7 +38,7 @@
             type="submit"
             class="flex-1 text-base rounded-full text-black bg-white border-4 border-white py-1 px-3 font-semibold hover:bg-white/90 hover:border-white/70 transition-all duration-300"
           >
-            Guardar cambios
+            Guardar
           </button>
         </div>
       </form>
