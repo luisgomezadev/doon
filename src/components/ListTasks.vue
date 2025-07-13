@@ -5,7 +5,7 @@
     <div
       v-for="(task, index) in tasks"
       :key="task.id"
-      class="shadow-md rounded-lg p-4 border-4 border-black flex flex-col"
+      class="shadow-md rounded-xl p-4 border-2 border-black flex flex-col"
       :style="{ backgroundColor: colors[index % colors.length] }"
     >
       <h3 class="text-xl font-semibold text-gray-800">
