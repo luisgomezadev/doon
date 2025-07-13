@@ -6,7 +6,7 @@
       v-for="(task, index) in tasks"
       :key="task.id"
       class="shadow-md rounded-lg p-4 border-4 border-black flex flex-col"
-      :class="bgColors[index % bgColors.length]"
+      :class="'bg-[' + colors[index % colors.length] + ']'"
     >
       <h3 class="text-xl font-semibold text-gray-800">
         {{ task.title }}
@@ -15,8 +15,21 @@
         {{ task.description }}
       </p>
       <div class="flex items-center justify-between mt-2">
-        <div class="text-sm bg-black/20 flex items-center w-fit py-0.5 px-3 rounded-full">
-          · {{ task.completed ? 'Completada' : 'Pendiente' }}
+        <div class="text-sm bg-black/80 flex items-center w-fit py-0.5 px-3 rounded-full">
+          <span class="flex items-center gap-1" :style="{ color: colors[index % colors.length] }"
+            ><svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 24 24"
+              height="15px"
+              width="15px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"></path>
+            </svg>
+            {{ task.completed ? 'Completada' : 'Pendiente' }}</span
+          >
         </div>
         <div class="flex gap-2">
           <button
@@ -41,6 +54,10 @@
 
 <script setup lang="ts">
 import type { Task } from '@/services/TaskService'
+import { useToast } from 'vue-toastification'
+
+
+const toast = useToast()
 
 const props = defineProps<{ tasks: Task[] }>()
 const emit = defineEmits(['update-tasks', 'edit-task'])
@@ -50,28 +67,29 @@ function completed(taskId: string) {
     task.id === taskId ? { ...task, completed: true } : task,
   )
   emit('update-tasks', updatedTask)
+  toast.success('Tarea completada')
 }
 
 function editTask(task: Task) {
   emit('edit-task', task)
 }
 
-const bgColors = [
-  'bg-[#97FFB6]',
-  'bg-[#B17DFF]',
-  'bg-[#7DC2FF]',
-  'bg-[#FF7D7D]',
-  'bg-[#7DFFDE]',
-  'bg-[#7D7DFF]',
-  'bg-[#FFFFFF]',
-  'bg-[#7DF2FF]',
-  'bg-[#B5CFFF]',
-  'bg-[#FFE17D]',
-  'bg-[#D2FFC0]',
-  'bg-[#FCC0FF]',
-  'bg-[#FFD3C0]',
-  'bg-[#BE94F2]',
-  'bg-[#D0EEFF]',
+const colors = [
+  '#97FFB6',
+  '#B17DFF',
+  '#7DC2FF',
+  '#FF7D7D',
+  '#7DFFDE',
+  '#7D7DFF',
+  '#FFFFFF',
+  '#7DF2FF',
+  '#B5CFFF',
+  '#FFE17D',
+  '#D2FFC0',
+  '#FCC0FF',
+  '#FFD3C0',
+  '#BE94F2',
+  '#D0EEFF',
 ]
 </script>
 

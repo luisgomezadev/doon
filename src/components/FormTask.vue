@@ -50,8 +50,11 @@
 import { ref } from 'vue'
 import { addTask } from '@/services/TaskService'
 import type { Task } from '@/services/TaskService'
+import { useToast } from 'vue-toastification'
 
 const emit = defineEmits(['close', 'task-added'])
+
+const toast = useToast()
 
 const title = ref('')
 const description = ref('')
@@ -72,6 +75,8 @@ function handleSubmit() {
 
   title.value = ''
   description.value = ''
+
+  toast.success('Tarea creada')
 }
 
 </script>

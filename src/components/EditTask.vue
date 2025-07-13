@@ -49,9 +49,12 @@
 <script setup lang="ts">
 import { ref, watch, defineProps, defineEmits } from 'vue'
 import type { Task } from '@/services/TaskService'
+import { useToast } from 'vue-toastification';
 
 const props = defineProps<{ task: Task }>()
 const emit = defineEmits(['close', 'task-updated'])
+
+const toast = useToast()
 
 // Inicia los campos con los valores de la tarea a editar
 const editedTitle = ref(props.task.title)
@@ -74,6 +77,7 @@ function handleSubmit() {
   }
   emit('task-updated', updatedTask)
   emit('close')
+  toast.success('Tarea actualizada')
 }
 </script>
 
