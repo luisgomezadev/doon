@@ -5,9 +5,23 @@
     <div
       v-for="(task, index) in tasks"
       :key="task.id"
-      class="shadow-md rounded-xl p-4 border-2 border-black flex flex-col"
+      class="shadow-md rounded-xl p-4 border-2 border-black flex flex-col relative"
       :style="{ backgroundColor: colors[index % colors.length] }"
     >
+      <div class="absolute top-2 right-2">
+        <button @click="deleteTask(task.id)" class="text-gray-800 hover:text-red-600 transition">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
       <h3 class="text-xl font-semibold text-gray-800">
         {{ task.title }}
       </h3>
@@ -56,11 +70,10 @@
 import type { Task } from '@/services/TaskService'
 import { useToast } from 'vue-toastification'
 
-
 const toast = useToast()
 
 const props = defineProps<{ tasks: Task[] }>()
-const emit = defineEmits(['update-tasks', 'edit-task'])
+const emit = defineEmits(['update-tasks', 'edit-task', 'delete-task'])
 
 function completed(taskId: string) {
   const updatedTask = props.tasks.map((task) =>
@@ -72,6 +85,10 @@ function completed(taskId: string) {
 
 function editTask(task: Task) {
   emit('edit-task', task)
+}
+
+function deleteTask(id: string) {
+  emit('delete-task', id)
 }
 
 const colors = [

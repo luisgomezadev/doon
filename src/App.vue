@@ -17,6 +17,7 @@
     <ListTasks
       :tasks="filteredTasks"
       @update-tasks="handleUpdateTasks"
+      @delete-task="handleDeleteTask"
       @edit-task="openEditTask"
     />
   </main>
@@ -28,7 +29,7 @@ import FormTask from './components/FormTask.vue'
 import ListTasks from './components/ListTasks.vue'
 import EditTask from './components/EditTask.vue'
 import { ref, onMounted, computed } from 'vue'
-import { getTasks, saveTasks } from '@/services/TaskService'
+import { getTasks, saveTasks, removeTask } from '@/services/TaskService'
 import type { Task } from '@/services/TaskService'
 
 const showForm = ref(false)
@@ -64,6 +65,11 @@ function handleTaskUpdated(updatedTask: Task) {
     t.id === updatedTask.id ? updatedTask : t
   )
   saveTasks(tasks.value)
+}
+
+function handleDeleteTask(id: string) {
+  removeTask(id)
+  tasks.value = getTasks()
 }
 
 function openEditTask(task: Task) {
