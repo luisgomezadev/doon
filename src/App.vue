@@ -31,11 +31,14 @@ import EditTask from './components/EditTask.vue'
 import { ref, onMounted, computed } from 'vue'
 import { getTasks, saveTasks, removeTask } from '@/services/TaskService'
 import type { Task } from '@/services/TaskService'
+import { useToast } from 'vue-toastification'
 
 const showForm = ref(false)
 const editingTask = ref<Task | null>(null)
 const tasks = ref<Task[]>([])
 const filter = ref<'all' | 'pending' | 'completed'>('all')
+
+const toast = useToast()
 
 const openForm = () => (showForm.value = true)
 const closeForm = () => (showForm.value = false)
@@ -69,6 +72,7 @@ function handleTaskUpdated(updatedTask: Task) {
 
 function handleDeleteTask(id: string) {
   removeTask(id)
+  toast.success('Tarea eliminada')
   tasks.value = getTasks()
 }
 
