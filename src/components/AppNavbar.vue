@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="p-4 fixed w-full shadow-lg shadow-gray-500 bg-gray-200/10 backdrop-blur-xl xl:bg-transparent xl:backdrop-blur-none xl:shadow-none">
+    <nav class="p-4 fixed w-full shadow-lg shadow-gray-500 bg-gray-200/10 backdrop-blur-xl xl:bg-transparent xl:backdrop-blur-none xl:shadow-none z-30">
       <div class="relative container mx-auto flex flex-col xl:flex-row justify-between items-center gap-y-4">
         <div class="text-black font-semibold text-2xl border-b-2 border-black xl:border-none w-full xl:w-fit text-center">DOON</div>
 
