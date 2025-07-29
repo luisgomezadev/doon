@@ -1,39 +1,46 @@
-# doon
+# ✅ Doon - App de Tareas
 
-This template should help get you started developing with Vue 3 in Vite.
+**Doon** es una aplicación de tareas simple y eficiente construida con [Vue 3](https://vuejs.org/), [Tailwind CSS](https://tailwindcss.com/) y [TypeScript](https://www.typescriptlang.org/). Permite crear, completar, eliminar y guardar tareas usando el almacenamiento local del navegador (`localStorage`), por lo que no necesita backend.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🚀 Tecnologías utilizadas
 
-## Type Support for `.vue` Imports in TS
+- ⚡️ [Vue 3 + Vite](https://vitejs.dev/)
+- 🎨 [Tailwind CSS](https://tailwindcss.com/)
+- 🔒 [TypeScript](https://www.typescriptlang.org/)
+- 💾 `localStorage` para persistencia
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+---
 
-## Customize configuration
+## 🎯 Características
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Añadir nuevas tareas
+- Editar tareas
+- Marcar tareas como completadas
+- Eliminar tareas
+- Guardado automático en `localStorage`
+- Interfaz moderna y responsive
 
-## Project Setup
+---
 
-```sh
+## 📦 Instalación
+
+1. Clona el repositorio:
+
+```bash
+git clone https://github.com/luisgomezadev/doon.git
+cd doon
+```
+
+2. Instala las dependencias
+
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+3. Inicia la app en modo desarrollo
 
-```sh
+```bash
 npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
